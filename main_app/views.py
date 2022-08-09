@@ -14,3 +14,7 @@ def home(request):
 def collections_index(request):
   content_collection = ContentCollection.objects.all()
   return render(request, 'collections/index.html', {'collections':content_collection})
+
+def collections_detail(request, collection_id):
+  collection = ContentCollection.objects.get(id=collection_id)
+  return render(request, 'collections/detail.html', { 'collection': collection })
