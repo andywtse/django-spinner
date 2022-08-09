@@ -22,11 +22,11 @@
         <div class="card-content">
           <h2 class="card-title">{{ collection.name }}</h2>
           <p><small>{{ collection.description }}</small></p>
-          <div class="collection-actions">
-            <a href="{% url 'collections_delete' collection.id %}" class="btn danger">Delete</a>
-          </div>
         </div>
       </a>
+      <div class="collection-actions">
+        <a href="{% url 'collections_delete' collection.id %}" class="btn danger">Delete</a>
+      </div>
     </div>
   {% endfor %}
 </section>
