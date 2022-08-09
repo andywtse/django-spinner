@@ -13,21 +13,36 @@
 
 <section class="detail-header">
   <h1>{{collection.name}}</h1>
+  <h2>{{collection.description}}</h2>
 </section>
 
 <div class="collection-container">
-  <section class="collection">
+  <section class="content-container">
     {% for content in collection.content_set.all %}
     <div class="card">
       <div class="card-content">
         <h2 class="card-title">{{ content.name }}</h2>
         <p><small>{{ content.description }}</small></p>
+        <div class="content-actions">
+          <a href="{% url 'delete_content' collection.id content.id %}" class="btn danger">Delete</a>
+        </div>
       </div>
     </div>
   {% endfor %}
   </section>
-  <section class="add-collection">
 
+  <section class="add-content">
+    <form
+      action="{% url 'add_content' collection.id %}"
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ content_form.as_p }}
+      <button type="submit" class="btn submit">Add Content</button>
+    </form>
   </section>
 </div>
+
+
 {% endblock %}

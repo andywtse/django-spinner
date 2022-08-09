@@ -22,7 +22,7 @@
       <ul>
         {% comment %} {% if user.is_authenticated %} {% endcomment %}
         <li><a href="{% url 'collections_index'%}">All Collection</a></li>
-        {% comment %} <li><a href="{% url 'collections_create' %}">Add a Collection</a></li> {% endcomment %}
+        <li><a href="{% url 'collections_create' %}">Create Collection</a></li>
         {% comment %} <li><a href="{% url 'spinner_index' %}">Spinner</a></li>
         <li><a href="{% url 'logout' %}">Log out</a></li> {% endcomment %}
         {% comment %} {% else %}
