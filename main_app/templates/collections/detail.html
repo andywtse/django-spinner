@@ -17,22 +17,9 @@
 </section>
 
 <div class="collection-container">
-  <section class="content-container">
-    {% for content in collection.content_set.all %}
-    <div class="card">
-      <div class="card-content">
-        <h2 class="card-title">{{ content.name }}</h2>
-        <p><small>{{ content.description }}</small></p>
-        <div class="content-actions">
-          <a href="{% url 'delete_content' collection.id content.id %}" class="btn danger">Delete</a>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
-  </section>
-
-  <section class="add-content">
-    <form
+  <section class="content-add-container">
+    <div class="add-content">
+      <form
       action="{% url 'add_content' collection.id %}"
       method="post" 
       class="subsection-content"
@@ -41,6 +28,24 @@
       {{ content_form.as_p }}
       <button type="submit" class="btn submit">Add Content</button>
     </form>
+    </div>
+    <div class="content-container">
+      {% for content in collection.content_set.all %}
+      <div class="card">
+        <div class="card-content">
+          <h2 class="card-title">{{ content.name }}</h2>
+          <p><small>{{ content.description }}</small></p>
+          <div class="content-actions">
+            <a href="{% url 'delete_content' collection.id content.id %}" class="btn danger">Delete</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  
+  </section>
+
+  <section class="add-content">
   </section>
 </div>
 

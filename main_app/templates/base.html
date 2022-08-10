@@ -20,15 +20,15 @@
   <header>
     <nav>
       <ul>
-        {% comment %} {% if user.is_authenticated %} {% endcomment %}
-        <li><a href="{% url 'collections_index'%}">All Collection</a></li>
-        <li><a href="{% url 'collections_create' %}">Create Collection</a></li>
-        {% comment %} <li><a href="{% url 'spinner_index' %}">Spinner</a></li>
-        <li><a href="{% url 'logout' %}">Log out</a></li> {% endcomment %}
-        {% comment %} {% else %}
-          <li><a href="{% url 'home' %}">Login</a></li> {% endcomment %}
-          {% comment %} <li><a href="{% url 'signup' %}">Sign Up</a></li> {% endcomment %}
-        {% comment %} {% endif %} {% endcomment %}
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'collections_index'%}">All Collection</a></li>
+          <li><a href="{% url 'collections_create' %}">Create Collection</a></li>
+          <li><a href="{% url 'logout' %}">Log out</a></li>
+        {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>

@@ -10,11 +10,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import ContentCollection, Content
 from .forms import ContentForm
 
-def home(request):
-  return render(request, 'home.html')
+class Home(LoginView):
+  template_name = 'home.html'
+
+def about(request):
+  return render(request, 'about.html')
 
 def collections_index(request):
-  content_collection = ContentCollection.objects.all()
+  content_collection = ContentCollection.objects.filter(user=request.user)
   return render(request, 'collections/index.html', {'collections':content_collection})
 
 def collections_detail(request, collection_id):
@@ -35,10 +38,23 @@ def delete_content(request, collection_id, content_id):
   content.delete()
   return redirect('collections_detail', collection_id=collection_id)
 
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('collections_index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'signup.html', context)
+
 class CollectionCreate(CreateView):
   model = ContentCollection
   fields = ['name', 'description']
-  success_url = '/collections/'
   
   def form_valid(self, form):
     form.instance.user = self.request.user
