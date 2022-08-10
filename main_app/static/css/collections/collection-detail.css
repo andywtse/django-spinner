@@ -63,3 +63,10 @@
   border: 2px solid blue;
   padding: 2em;
 }
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid blue;
+  padding: 2em;
+}

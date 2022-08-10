@@ -1,6 +1,5 @@
-from typing import Collection
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
@@ -16,6 +15,7 @@ class Home(LoginView):
 def about(request):
   return render(request, 'about.html')
 
+@login_required
 def collections_index(request):
   content_collection = ContentCollection.objects.filter(user=request.user)
   return render(request, 'collections/index.html', {'collections':content_collection})
@@ -52,7 +52,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'signup.html', context)
 
-class CollectionCreate(CreateView):
+class CollectionCreate(LoginRequiredMixin,CreateView):
   model = ContentCollection
   fields = ['name', 'description']
   
@@ -60,6 +60,6 @@ class CollectionCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
   
-class CollectionDelete(DeleteView):
+class CollectionDelete(LoginRequiredMixin,DeleteView):
   model = ContentCollection
   success_url = '/collections/'

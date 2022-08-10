@@ -7,6 +7,7 @@
   type="text/css" 
   href="{% static 'css/collections/collection-detail.css' %}"
 />
+<script src='../../static/js/Winwheel.js'></script>
 {% endblock %}
 
 {% block content %}
@@ -45,7 +46,18 @@
   
   </section>
 
-  <section class="add-content">
+  <section class="spinner-container">
+    <canvas id='myCanvas' width='880' height='300'>
+      Canvas not supported, use another browser.
+    </canvas>
+    <script type="text/javascript">
+        let theWheel = new Winwheel({
+            'canvasId'    : 'myCanvas',
+            'numSegments' : {{collection.content_set.all.count}},
+            'fillStyle'   : '#e7706f',
+            'lineWidth'   : 3
+        });
+    </script>
   </section>
 </div>
 
