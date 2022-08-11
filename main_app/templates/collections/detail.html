@@ -8,6 +8,7 @@
   href="{% static 'css/collections/collection-detail.css' %}"
 />
 <script src='../../static/js/Winwheel.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -47,17 +48,53 @@
   </section>
 
   <section class="spinner-container">
-    <canvas id='myCanvas' width='880' height='300'>
-      Canvas not supported, use another browser.
-    </canvas>
+    <div class="canvas-container">
+      <canvas id='canvas' width='900' height='400'>
+        Canvas not supported, use another browser.
+      </canvas>
+      <img id="prize-pointer" src="{% static 'images/down-arrow.svg' %}" alt="V">
+    </div>
+    
     <script type="text/javascript">
         let theWheel = new Winwheel({
-            'canvasId'    : 'myCanvas',
-            'numSegments' : {{collection.content_set.all.count}},
+            'canvasId'    : 'canvas',
+            'numSegments' : 0,
+            'pointerAngle' :0,
             'fillStyle'   : '#e7706f',
-            'lineWidth'   : 3
+            'lineWidth'   : 3,
+            'animation'   :
+            {
+              'type'     : 'spinToStop',  // Type of animation.
+              'duration' : 5,             // How long the animation is to take in seconds.
+              'spins'    : 8,              // The number of complete 360 degree rotations the wheel is to do.
+              'callbackFinished' : 'alertWinner()',
+            }
         });
+
+        const contentArray = {{content|safe}}
+        console.log(contentArray)
+        for (let i = 0; i < contentArray.length; i++ ){
+          theWheel.addSegment({
+            'text': contentArray[i].fields.name,
+            'fillStyle': 'gray',
+          })
+          theWheel.draw();
+        }
+
+        function alertWinner(){
+          let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
+          for (let x = 1; x < theWheel.segments.length; x ++) {
+            theWheel.segments[x].fillStyle = 'gray';
+          }
+
+          theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
+          theWheel.draw()
+        }
+
     </script>
+    <div class="action-container">
+      <button onClick="theWheel.startAnimation()">Play</button>
+    </div>
   </section>
 </div>
 

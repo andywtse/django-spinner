@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core import serializers
 from .models import ContentCollection, Content
 from .forms import ContentForm
 
@@ -22,8 +23,10 @@ def collections_index(request):
 
 def collections_detail(request, collection_id):
   collection = ContentCollection.objects.get(id=collection_id)
+  content = Content.objects.filter(collection=collection_id)
+  content_json = serializers.serialize('json', content)
   content_form = ContentForm()
-  return render(request, 'collections/detail.html', { 'collection': collection, 'content_form': content_form })
+  return render(request, 'collections/detail.html', { 'collection': collection, 'content_form': content_form, 'content': content_json })
 
 def add_content(request, collection_id):
   form = ContentForm(request.POST)
