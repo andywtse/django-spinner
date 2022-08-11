@@ -75,29 +75,36 @@
         console.log(contentArray)
         for (let i = 0; i < contentArray.length; i++ ){
           var randomColor = Math.floor(Math.random()*16777215).toString(16);
+          const color = hexToRgb(randomColor)
           theWheel.addSegment({
             'text': contentArray[i].fields.name,
-            'fillStyle': 'gray',
+            'fillStyle': `rgba(${color.r},${color.g},${color.b},0.5)`,
           })
           theWheel.draw();
         }
 
         function alertWinner(){
           let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
-          for (let x = 1; x < theWheel.segments.length; x ++) {
-            theWheel.segments[x].fillStyle = 'gray';
-          }
 
-          theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
+          theWheel.segments[winningSegmentNumber].textStrokeStyle = 'yellow';
           theWheel.draw()
           theWheel.rotationAngle = theWheel.rotationAngle % 360
         }
 
         function resetSpinAndPlay(){
           for (let x = 1; x < theWheel.segments.length; x ++) {
-            theWheel.segments[x].fillStyle = 'gray';
+            theWheel.segments[x].textStrokeStyle = 'black';
           }
           theWheel.startAnimation()
+        }
+
+        function hexToRgb(hex) {
+          var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+          return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+          } : null;
         }
 
     </script>
