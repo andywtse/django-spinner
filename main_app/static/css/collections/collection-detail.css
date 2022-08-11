@@ -80,6 +80,14 @@
   margin: 2em 0;
 }
 
+.detail-header > h1 {
+  font-size: 35px;
+}
+
+.detail-header > h2 {
+  font-size: 24px;
+}
+
 .content-container {
   display: flex;
   flex-direction: column;
