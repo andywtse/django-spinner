@@ -1,0 +1,15 @@
+.about-box {
+  border-radius: 20px;
+  border: 2px rgb(242, 243, 217, 0.18) solid;
+  background: rgb(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur( 8px );
+  backdrop-filter: blur( 9px );
+  padding: 2em;
+  margin: 0em;
+  font-size: 24px;
+  box-shadow: var(--card-box-shadow);
+}
+
+p {
+  font-size:30px;
+}

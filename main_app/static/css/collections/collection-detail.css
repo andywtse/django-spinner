@@ -64,6 +64,7 @@
   background: rgb(255, 255, 255, 0.45);
   -webkit-backdrop-filter: blur( 8px );
   backdrop-filter: blur( 9px );
+  box-shadow: var(--card-box-shadow);
   padding: 2em;
   margin: 2em 0;
 }
@@ -74,6 +75,7 @@
   background: rgb(255, 255, 255, 0.45);
   -webkit-backdrop-filter: blur( 8px );
   backdrop-filter: blur( 9px );
+  box-shadow: var(--card-box-shadow);
   padding: 2em;
   margin: 2em 0;
 }
@@ -83,6 +85,7 @@
   flex-direction: column;
   align-items: center;
   border: 3px solid rgb(53, 82, 74, 0.5);
+  box-shadow: var(--card-box-shadow);
   border-radius: 5px;
   max-height: 40vh;
   padding: 2em;
@@ -91,10 +94,15 @@
   overflow-x: hidden;
 }
 
+.content-container > div {
+  font-size: 20px;
+}
+
 .add-content {
   display: flex;
   flex-direction: column;
   border: 3px solid rgb(53, 82, 74, 0.5);
+  box-shadow: var(--card-box-shadow);
   border-radius: 5px;
   padding: 2em;
   padding: 2em;
@@ -107,6 +115,30 @@
   margin: 2em 0;
   padding: 2em;
 }
+
+.action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2em;
+}
+
+#winner-container {
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2em;
+  padding: 1em;
+  border-radius: 20px;
+  border: 2px rgb(242, 243, 217, 0.18) solid;
+  -webkit-backdrop-filter: blur( 8px );
+  backdrop-filter: blur( 9px );
+  box-shadow: var(--card-box-shadow);
+}
+
 
 form {
   display:flex;
