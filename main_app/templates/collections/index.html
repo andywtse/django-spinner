@@ -16,17 +16,23 @@
 </section>
 
 <section class="card-container">
-  {% for collection in collections %}
-    <div class="card">
-      <a href="/collections/{{ collection.id }}">
-        <div class="card-content">
-          <h2 class="card-title">{{ collection.name }}</h2>
-          <p><small>{{ collection.description }}</small></p>
-        </div>
-      </a>
-      <a href="{% url 'collections_delete' collection.id %}" class="btn danger collection-delete">X</a>
+  {% if collections.count != 0 %}
+    {% for collection in collections %}
+      <div class="card">
+        <a href="/collections/{{ collection.id }}">
+          <div class="card-content">
+            <h2 class="card-title">{{ collection.name }}</h2>
+            <p><small>{{ collection.description }}</small></p>
+          </div>
+        </a>
+        <a href="{% url 'collections_delete' collection.id %}" class="btn danger collection-delete">X</a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty-info">
+      <p>You have no collections. Create a new collection!</p>
     </div>
-  {% endfor %}
+  {% endif %}
 </section>
 
 {% endblock %}
