@@ -74,6 +74,7 @@
         const contentArray = {{content|safe}}
         console.log(contentArray)
         for (let i = 0; i < contentArray.length; i++ ){
+          var randomColor = Math.floor(Math.random()*16777215).toString(16);
           theWheel.addSegment({
             'text': contentArray[i].fields.name,
             'fillStyle': 'gray',
@@ -89,11 +90,19 @@
 
           theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
           theWheel.draw()
+          theWheel.rotationAngle = theWheel.rotationAngle % 360
+        }
+
+        function resetSpinAndPlay(){
+          for (let x = 1; x < theWheel.segments.length; x ++) {
+            theWheel.segments[x].fillStyle = 'gray';
+          }
+          theWheel.startAnimation()
         }
 
     </script>
     <div class="action-container">
-      <button onClick="theWheel.startAnimation()">Play</button>
+      <button onClick="resetSpinAndPlay()">Play</button>
     </div>
   </section>
 </div>
