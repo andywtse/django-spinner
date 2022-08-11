@@ -114,11 +114,12 @@
 
         function alertWinner(){
           let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
+          let winningSegment = theWheel.getIndicatedSegment();
 
           theWheel.segments[winningSegmentNumber].textStrokeStyle = 'yellow';
           theWheel.draw()
           theWheel.rotationAngle = theWheel.rotationAngle % 360
-          document.getElementById('winner-info').innerHTML = `Winner is ${winningSegmentNumber}!`
+          document.getElementById('winner-info').innerHTML = `Winner is ${winningSegment.text}!`
         }
 
         function resetSpinAndPlay(){
