@@ -28,7 +28,7 @@
     >
       {% csrf_token %}
       {{ content_form.as_p }}
-      <button type="submit" class="btn submit">Add Content</button>
+      <button type="submit" class="btn submit add-button">Add Content</button>
     </form>
     </div>
     <div class="content-container">
@@ -38,7 +38,7 @@
           <h2 class="card-title">{{ content.name }}</h2>
           <p><small>{{ content.description }}</small></p>
           <div class="content-actions">
-            <a href="{% url 'delete_content' collection.id content.id %}" class="btn danger">Delete</a>
+            <a href="{% url 'delete_content' collection.id content.id %}" class="btn danger delete-button">Delete</a>
           </div>
         </div>
       </div>
@@ -109,7 +109,7 @@
 
     </script>
     <div class="action-container">
-      <button onClick="resetSpinAndPlay()">Play</button>
+      <button onClick="resetSpinAndPlay()">Spin</button>
     </div>
   </section>
 </div>

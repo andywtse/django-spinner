@@ -63,6 +63,10 @@ main > section {
   margin-top: 16px;
 }
 
+#image-home {
+  width: 400px
+}
+
 @media only screen and (min-width: 768px) {
   main {
     justify-content: space-around;
@@ -73,9 +77,12 @@ main > section {
   }
 
   .login {
-    border: var(--borders);
+    border-radius: 20px;
+    border: 2px rgb(242, 243, 217, 0.18) solid;
+    background: rgb(255, 255, 255, 0.45);
+    -webkit-backdrop-filter: blur( 8px );
+    backdrop-filter: blur( 9px );
     padding: 20px;
-    border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     width: 100%;
   }

@@ -1,14 +1,35 @@
+.page-header {
+  border-radius: 20px;
+  border: 2px rgb(242, 243, 217, 0.18) solid;
+  background: rgb(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur( 8px );
+  backdrop-filter: blur( 9px );
+  padding: 2em;
+  margin: 2em 0;
+}
+
 .card-container {
-  padding: 0 30px;
+  border-radius: 20px;
+  border: 2px rgb(242, 243, 217, 0.18) solid;
+  background: rgb(255, 255, 255, 0.45);
+  -webkit-backdrop-filter: blur( 8px );
+  backdrop-filter: blur( 9px );
+  padding: 2em;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .card {
+  position: relative;
   width: 275px;
   margin: 10px;
-  border: var(--borders);
+
+  border-radius: 10px;
+  border: 2px rgb(98, 124, 133, 0.18) solid;
+  background: rgb(138, 163, 153, 0.45);
+
   box-shadow: var(--card-box-shadow);
 }
 
@@ -35,4 +56,17 @@
 .card p {
   margin: 5px 0;
   font-size: var(--font-reg);
+}
+
+.collection-delete {
+  background-color: red;
+  position: absolute;
+  top:0;
+  right:-10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 20px;
+  font-size: 10px;
 }

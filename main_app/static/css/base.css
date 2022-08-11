@@ -44,6 +44,7 @@ body {
   --font-l: 1.8rem;
   --font-reg: 1.6rem;
   --card-border-radius: 6px;
+  background: linear-gradient(180deg, #A2E8DD 0%, #32DE8A 100%);
 }
 
 header {

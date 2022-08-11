@@ -24,9 +24,7 @@
           <p><small>{{ collection.description }}</small></p>
         </div>
       </a>
-      <div class="collection-actions">
-        <a href="{% url 'collections_delete' collection.id %}" class="btn danger">Delete</a>
-      </div>
+      <a href="{% url 'collections_delete' collection.id %}" class="btn danger collection-delete">X</a>
     </div>
   {% endfor %}
 </section>
